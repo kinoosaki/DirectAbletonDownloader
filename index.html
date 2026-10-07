@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>StaticAbletonDownloader</title>
+    <title>DirectAbletonDownloader (DAD)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Inline SVG icon helper */
         .icon { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
@@ -526,6 +526,140 @@
         background: var(--surface2);
         border-radius: 99px;
     }
+
+    /* Kinosaki theme: midnight wallpaper, frosted blue cards, and coral details. */
+    :root {
+        --bg: #07112d;
+        --surface: rgba(8, 20, 48, 0.82);
+        --surface2: rgba(20, 39, 79, 0.86);
+        --border: rgba(117, 151, 229, 0.38);
+        --accent: #ff786c;
+        --accent2: #9bb8f5;
+        --text: #edf1ff;
+        --muted: #b9c8ec;
+        --selected: #ff786c;
+    }
+
+    body {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        background-color: var(--bg);
+        background-image: linear-gradient(rgba(5, 12, 34, 0.56), rgba(5, 12, 34, 0.56)), url('./wallhaven-3q2rqd.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: var(--text);
+    }
+
+    body::before { display: none; }
+    body::after { background: radial-gradient(circle, rgba(255, 120, 108, 0.14) 0%, transparent 66%); }
+    .page { max-width: 780px; }
+
+    .logo-mark {
+        color: var(--text);
+        border-color: var(--border);
+        background: rgba(8, 20, 48, 0.62);
+        backdrop-filter: blur(14px);
+    }
+
+    .logo-mark span, h1 em { color: var(--accent); }
+    h1 { font-family: 'Montserrat', system-ui, sans-serif; color: #fff0dd; }
+    .subtitle { color: var(--muted); font-weight: 400; }
+
+    .card {
+        position: relative;
+        background: var(--surface);
+        border-color: var(--border);
+        border-radius: 24px;
+        backdrop-filter: blur(16px);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+        transition: background 0.35s ease, border-color 0.35s ease, transform 0.25s ease;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: radial-gradient(180px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 120, 108, 0.9), rgba(255, 120, 108, 0.18) 50%, transparent 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        z-index: 3;
+    }
+
+    .card:hover::before { opacity: 1; }
+    .card-label { color: var(--accent); }
+    .card-label::after { background: var(--border); }
+
+    .pill, .version-chip, .custom-input, .use-btn, .result-link-wrap {
+        background: var(--surface2);
+        border-color: var(--border);
+        color: var(--text);
+    }
+
+    .pill { color: #dce7ff; }
+    .pill:hover { filter: brightness(1.15); }
+    .version-chip:hover { border-color: rgba(255, 120, 108, 0.55); color: #fff0dd; }
+
+    .pill.active, .version-chip.selected {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #211b2c;
+        box-shadow: 0 6px 20px rgba(255, 120, 108, 0.25);
+    }
+
+    .detect-badge, .major-title::before, .result-link-wrap i, .result-link,
+    .result-note i { color: var(--accent); }
+    .detect-badge::before { background: var(--accent); }
+    .major-title::before { background: var(--surface2); border-color: var(--border); }
+
+    .custom-input:focus, .custom-input.confirmed {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(255, 120, 108, 0.16);
+    }
+
+    .use-btn { color: var(--accent); }
+    .use-btn:hover { background: rgba(255, 120, 108, 0.12); border-color: var(--accent); }
+
+    .download-btn {
+        background: var(--accent);
+        color: #211b2c;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(255, 120, 108, 0.28);
+    }
+
+    .download-btn:hover { box-shadow: 0 14px 36px rgba(255, 120, 108, 0.38); }
+
+    .result-box {
+        background: var(--surface);
+        border-color: var(--border);
+        border-radius: 20px;
+        backdrop-filter: blur(16px);
+    }
+
+    .result-link:hover { color: #fff0dd; }
+
+    .disclaimer {
+        background: var(--surface2);
+        border-left-color: var(--accent);
+        color: var(--muted);
+    }
+
+    .disclaimer strong { color: var(--accent); }
+    .gh-link { border-color: var(--border); color: var(--muted); background: var(--surface); backdrop-filter: blur(12px); }
+    .gh-link:hover { color: var(--text); border-color: var(--accent); background: var(--surface2); }
+
+    ::selection { background: rgba(168, 57, 43, 0.2); color: var(--text); }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
 </style>
 
 </head>
@@ -534,16 +668,16 @@
 
 <!-- HEADER -->
 <header>
-    <div class="logo-mark"><i class="fas fa-wave-square"></i> Ableton · Installer Tool · <span>v2</span></div>
-    <h1>Static<em>Ableton</em><br>Downloader</h1>
-    <p class="subtitle">Direct installer links from Ableton's servers — any version, one click.</p>
+    <div class="logo-mark"><i class="fas fa-wave-square"></i> Ableton · Installer Tool</div>
+    <h1>Direct<em>Ableton</em><br>Downloader</h1>
+    <p class="subtitle">Direct installer links from Ableton's servers.</p>
 </header>
 
 <!-- DISCLAIMER -->
 <div class="card" style="animation-delay:0s">
     <div class="card-label"><i class="fas fa-circle-info"></i> Notice</div>
     <p class="disclaimer">
-        <strong>Not piracy.</strong> This tool constructs direct download links for official Ableton Live installers served from Ableton's own CDN. No activation is included — a valid license is still required.
+        <strong>Not piracy.</strong> This tool constructs direct download links for official Ableton Live installers served from Ableton's own CDN. No activation is included, however a valid license is still required.
     </p>
 </div>
 
@@ -608,9 +742,10 @@
 
 <!-- FOOTER -->
 <footer>
-    <a class="gh-link" href="https://github.com/kinoosaki/StaticAbletonDownloader/" target="_blank" rel="noopener">
+    <a class="gh-link" href="https://github.com/kinoosaki/DirectAbletonDownloader/" target="_blank" rel="noopener">
         <i class="fab fa-github"></i> View on GitHub
     </a>
+    <p>Based on <a href="https://github.com/devilAPI/StaticAbletonDownloader" target="_blank" rel="noopener" style="color: var(--muted);">StaticAbletonDownloader by devilAPI</a></p>
 </footer>
 
 </div>
@@ -808,6 +943,15 @@ document.getElementById('dl-btn').addEventListener('click', () => {
 // ── INIT ──────────────────────────────────────────────────────────────────────
 buildVersionUI();
 detectOS();
+
+// Kinosaki-style cursor spotlight along card borders.
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+});
 </script>
 
 </body>
